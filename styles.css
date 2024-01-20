@@ -11,7 +11,7 @@ body {
 }
 
 .hero {
-    background-image: url('./assets/hero-bg.png');
+    background-image: url('./assets/hero-bg.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

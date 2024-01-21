@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     background-image: url('./assets/bg.png');
     background-repeat: no-repeat;
@@ -27,4 +31,8 @@ body {
 
 .secondary-text {
     font-family: 'Roboto', sans-serif;
+}
+
+.card-container {
+    box-shadow: inset -10px 0 5px -5px rgba(0, 0, 0, 0.25);
 }

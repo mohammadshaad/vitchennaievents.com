@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
 
     <title>VIT CHENNAI EVENTS</title>
   </head>
@@ -24,23 +36,103 @@
 
       <div class="flex items-center justify-center hero -mt-20">
         <div
-          class="flex flex-col item-center justify-center relative top-20 right-60"
+          class="flex flex-col item-center justify-center gap-10 relative right-40 shadow-2xl"
         >
-        <div>
-          <h1 class="text-6xl font-bold text-white">
-            EVENTS
-          </h1>
-          <h2 class="text-2xl font-light text-white">
-            VIT CHENNAI
-          </h2>
-        </div>
-          <div class="flex items-center justify-start">
+          <div class="flex item-start justify-center flex-col gap-4 mb-10">
+            <h1 class="text-9xl font-bold text-white primary-text">EVENTS</h1>
+            <h2 class="text-2xl font-light text-white secondary-text">
+              VIT CHENNAI
+            </h2>
+          </div>
+          <div class="flex flex-col gap-4 items-start justify-center">
             <a
               href=""
-              class="flex items-center justify-center px-20 py-6 text-2xl rounded-full bg-[#E3CA6F] shadow-lg"
+              class="group primary-text flex items-center justify-between w-80 px-20 py-6 text-2xl rounded-full bg-[#E3CA6F] shadow-lg"
             >
               Proshow
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 group-hover:w-40 group-hover:rotate-45 transition-all duration-300"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                />
+              </svg>
             </a>
+            <a
+              href=""
+              class="group primary-text flex items-center justify-between w-80 px-20 py-6 text-2xl rounded-full bg-[#6FE3E3] shadow-lg"
+            >
+              Alumni
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 group-hover:w-40 group-hover:rotate-45 transition-all duration-300"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter p-4">
+        <div class="flex items-center gap-4">
+          <!-- Search bar -->
+          <div class="flex items-center border border-gray-300 rounded-md">
+            <input
+              class="px-4 py-2 w-full outline-none"
+              type="search"
+              placeholder="Search"
+            />
+            <button class="px-4 py-2 bg-blue-500 text-white rounded-r-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="h-5 w-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Dropdowns -->
+          <div class="relative">
+            <select
+              class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            >
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+
+          <div class="relative">
+            <select
+              class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            >
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
           </div>
         </div>
       </div>

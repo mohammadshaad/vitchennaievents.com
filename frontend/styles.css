@@ -8,7 +8,7 @@
 }
 
 body {
-    background-image: url('./assets/bg.png');
+    background-image: url('');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -16,7 +16,7 @@ body {
 
 
 .hero {
-    background-image: url('./assets/hero-bg.svg');
+    background-image: url('../../vitcevents/assets/hero-bg.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -47,7 +47,7 @@ body {
 
 @media (max-width: 768px) {
     .hero {
-        background-image: url('./assets/hero-bg-mobile.svg');
+        background-image: url('../assets/hero-bg-mobile.svg');
         width: 100%;
     }
 }

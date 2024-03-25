@@ -29,7 +29,7 @@ function signUp() {
                 // alert(response.message);
                 localStorage.setItem('token', response.token);
                 // Redirect user to login page
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             } else {
                 if (response.message === "Username or email already exists") {
                     document.getElementById('signup-message').classList.remove('hidden');
@@ -47,4 +47,38 @@ function signUp() {
         alert('Error occurred while signing up');
     };
     xhr.send(`username=${encodeURIComponent(username)}&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        login();
+    });
+});
+
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Send data to server using AJAX
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '../backend/controller/login.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.status === "success") {
+                localStorage.setItem('token', response.token);
+                window.location.href = '/vitcevents/index.html';
+            } else {
+                document.getElementById('login-message').classList.remove('hidden');
+            }
+        } else {
+            alert('Error occurred while logging in');
+        }
+    };
+    xhr.onerror = function () {
+        alert('Error occurred while logging in');
+    };
+    xhr.send(`username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`);
 }

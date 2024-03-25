@@ -18,6 +18,61 @@ function generateJWT($user_id) {
     return JWT::encode($payload, $key);
 }
 
+// Function to check password strength
+function isPasswordStrong($password, $username) {
+    // Check if password is at least 12 characters long
+    if (strlen($password) < 12) {
+        return false;
+    }
+
+    // Check if password contains at least one number
+    if (!preg_match('/\d/', $password)) {
+        return false;
+    }
+
+    // Check if password contains at least one special character
+    if (!preg_match('/[!@#$%^&*()_+\-=[\]{};\'":\\|,.<>\/?]+/', $password)) {
+        return false;
+    }
+
+    // Check if password contains at least one uppercase letter
+    if (!preg_match('/[A-Z]/', $password)) {
+        return false;
+    }
+
+    // Check if password contains at least one lowercase letter
+    if (!preg_match('/[a-z]/', $password)) {
+        return false;
+    }
+
+    // Check if password does not contain spaces
+    if (preg_match('/\s/', $password)) {
+        return false;
+    }
+
+    // Check if password does not contain unicode characters or emoji
+    if (preg_match('/[\x{0080}-\x{FFFF}]/u', $password)) {
+        return false;
+    }
+
+    // Check if password is not the name of the user itself
+    if (strtolower($password) === strtolower($username)) {
+        return false;
+    }
+
+    // Check if password is not the word "password"
+    if (strtolower($password) === 'password') {
+        return false;
+    }
+
+    // Check if password is not the word "123456"
+    if ($password === '123456') {
+        return false;
+    }
+
+    return true;
+}
+
 // Database connection
 $host = 'localhost';
 $username = 'root';
@@ -43,7 +98,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($check_query);
     if ($result && $result->num_rows > 0) {
         echo json_encode(array("status" => "error", "message" => "Username or email already exists"));
-        return; // Exit early if username or email already exists
+        return; 
+    }
+
+    // Check password strength
+    if (!isPasswordStrong($password, $username)) {
+        echo json_encode(array("status" => "error", "message" => "Password should be at least 12 characters long"));
+        return; 
     }
 
     // Hash the password

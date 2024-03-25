@@ -9,7 +9,7 @@ use Firebase\JWT\JWT;
 
 // Function to generate JWT token
 function generateJWT($user_id) {
-    $key = "shaad_hero"; // Change this to your secret key
+    $key = "shaad_hero"; 
     $payload = array(
         "user_id" => $user_id,
         "iat" => time(),
@@ -37,6 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+
+    // Check if username or email already exists
+    $check_query = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+    $result = $conn->query($check_query);
+    if ($result && $result->num_rows > 0) {
+        echo json_encode(array("status" => "error", "message" => "Username or email already exists"));
+        return; // Exit early if username or email already exists
+    }
 
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);

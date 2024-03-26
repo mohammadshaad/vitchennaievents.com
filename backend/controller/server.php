@@ -159,44 +159,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Fetch user data
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    // Check if a valid JWT token is provided
-    $jwt_token = $_SERVER['HTTP_AUTHORIZATION'];
-    if (!$jwt_token) {
-        echo json_encode(array("status" => "error", "message" => "JWT token is missing"));
-        return;
-    }
-
-    try {
-        // Verify and decode the JWT token
-        $decoded_token = JWT::decode($jwt_token, $key, array('HS256'));
-
-        // Retrieve user data from the database based on the user_id in the JWT token
-        $user_id = $decoded_token->user_id;
-        $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-            // Check if "name" and "email" keys exist before accessing them
-            $name = isset ($row['name']) ? $row['name'] : null;
-            $email = isset ($row['email']) ? $row['email'] : null;
-            // Remove sensitive information like password from the response
-            unset($row['password']);
-            echo json_encode(array("status" => "success", "user" => $row, "name" => $name, "email" => $email));
-        } else {
-            // User not found
-            echo json_encode(array("status" => "error", "message" => "User not found"));
-        }
-    } catch (Exception $e) {
-        // Invalid JWT token
-        echo json_encode(array("status" => "error", "message" => "Invalid JWT token"));
-    }
-}
-
 
 // Close connection
 $conn->close();
